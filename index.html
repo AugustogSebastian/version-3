@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrowthPulse – TikTok Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #0f1525;
+    --card: #131b2e;
+    --card2: #1a2440;
+    --accent: #3d5fce;
+    --accent2: #5577e8;
+    --text: #e8eaf6;
+    --muted: #8892b0;
+    --border: rgba(255,255,255,0.07);
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+ 
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(10,14,26,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+ 
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo span { display: block; font-size: 9px; letter-spacing: 0.3em; font-weight: 400; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+ 
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .btn-nav {
+    background: var(--accent); color: #fff;
+    border: none; border-radius: 999px;
+    padding: 10px 24px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: background .2s, transform .15s;
+    text-decoration: none;
+  }
+  .btn-nav:hover { background: var(--accent2); transform: translateY(-1px); }
+ 
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 60px;
+    padding: 120px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+ 
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(61,95,206,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+ 
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 6px 16px; font-size: 12px; color: var(--muted);
+    letter-spacing: 0.05em; margin-bottom: 24px;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent2); display: block;
+  }
+ 
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 900; line-height: 1.08;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent2); }
+ 
+  .hero p {
+    font-size: 17px; color: var(--muted); max-width: 480px;
+    line-height: 1.7; margin-bottom: 40px;
+  }
+ 
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+ 
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    border: none; border-radius: 999px;
+    padding: 14px 32px; font-size: 15px; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: background .2s, transform .15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+ 
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 14px 32px; font-size: 15px; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: border-color .2s, transform .15s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--accent2); transform: translateY(-2px); }
+ 
+  /* PROCESS CARD */
+  .process-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px;
+  }
+  .process-card .label {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .process-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    margin-bottom: 24px; color: #fff;
+  }
+  .process-steps { display: flex; flex-direction: column; gap: 12px; }
+  .step {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: var(--card2); border-radius: 14px; padding: 18px;
+    border: 1px solid var(--border);
+  }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .step-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .step-content p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+ 
+  /* SECTION COMMON */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.25em; color: var(--accent2);
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900; line-height: 1.1;
+    color: #fff; max-width: 700px;
+    margin-bottom: 20px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--muted); max-width: 580px; line-height: 1.7;
+  }
+ 
+  /* SERVICES */
+  .services { background: var(--bg2); }
+  .services-intro { margin-bottom: 60px; }
+ 
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .service-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 28px;
+    transition: border-color .2s, transform .2s;
+  }
+  .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+ 
+  .service-icon {
+    width: 48px; height: 48px; background: var(--card2);
+    border-radius: 12px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .service-icon svg { width: 22px; height: 22px; stroke: var(--accent2); fill: none; stroke-width: 1.8; }
+  .service-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .service-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+ 
+  /* WHY US */
+  .why { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-left .section-sub { margin-bottom: 32px; }
+  .why-points { display: flex; flex-direction: column; gap: 12px; }
+  .why-point {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 22px;
+    font-size: 14px; font-weight: 500; color: var(--text);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .why-point::before {
+    content: '✓'; width: 24px; height: 24px; flex-shrink: 0;
+    background: rgba(61,95,206,0.2); color: var(--accent2);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+ 
+  /* FEATURE PILLS */
+  .features-top {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin-top: 40px;
+  }
+  .feat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 26px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  }
+  .feat-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .feat-card h4 { font-size: 16px; font-weight: 700; }
+  .feat-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+ 
+  /* PERFORMANCE BANNER */
+  .perf-banner {
+    margin: 0 60px 100px;
+    background: linear-gradient(135deg, var(--card2) 0%, rgba(61,95,206,0.15) 100%);
+    border: 1px solid rgba(61,95,206,0.3);
+    border-radius: 24px; padding: 60px;
+    display: flex; justify-content: space-between; align-items: center; gap: 40px;
+  }
+  .perf-banner-left .section-label { margin-bottom: 12px; }
+  .perf-banner-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 900;
+    color: #fff; line-height: 1.1; max-width: 500px;
+    margin-bottom: 16px;
+  }
+  .perf-banner-left p { font-size: 15px; color: var(--muted); max-width: 480px; line-height: 1.7; }
+ 
+  /* CONTACT */
+  .contact { background: var(--bg2); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .contact-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 900; color: #fff; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .contact-left p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+  .contact-info { display: flex; flex-direction: column; gap: 12px; }
+  .contact-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 20px;
+  }
+  .contact-item .ci-label {
+    font-size: 11px; letter-spacing: 0.15em; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .contact-item .ci-val { font-size: 15px; font-weight: 600; color: #fff; }
+ 
+  .contact-right {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px; align-self: start;
+  }
+  .contact-right h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700; color: #fff;
+    margin-bottom: 12px;
+  }
+  .contact-right p { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+  .contact-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+ 
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+  }
+  footer .logo { font-size: 18px; }
+  footer p { font-size: 13px; color: var(--muted); }
+ 
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp .7s ease both; }
+  .delay-1 { animation-delay: .1s; }
+  .delay-2 { animation-delay: .2s; }
+  .delay-3 { animation-delay: .3s; }
+  .delay-4 { animation-delay: .4s; }
+ 
+  @media (max-width: 1024px) {
+    nav { padding: 16px 30px; }
+    .hero { grid-template-columns: 1fr; padding: 120px 30px 60px; }
+    section { padding: 70px 30px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .perf-banner { margin: 0 30px 70px; flex-direction: column; }
+    .features-top { grid-template-columns: 1fr 1fr; }
+    footer { padding: 30px; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">GROWTH<br>PULSE <span>Brand Scaling</span></a>
+  <div class="nav-links">
+    <a href="#ydelser">Ydelser</a>
+    <a href="#hvorfor">Hvorfor os</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#kontakt" class="btn-nav">Skriv til os</a>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge fade-up">GrowthPulse.dk · TikTok marketing for ambitiøse brands</div>
+    <h1 class="fade-up delay-1">Vi skaber TikTok-<em>kampagner,</em> der får virksomheder set.</h1>
+    <p class="fade-up delay-2">GrowthPulse hjælper virksomheder med at vokse gennem TikTok. Vi udvikler idéer, producerer videoer, står for professionel redigering og sender de rigtige profiler ud for at filme og skabe indhold, der rammer målgruppen.</p>
+    <div class="hero-btns fade-up delay-3">
+      <a href="#kontakt" class="btn-primary">Book en samtale</a>
+      <a href="#ydelser" class="btn-ghost">Se hvad vi gør</a>
+    </div>
+  </div>
+ 
+  <div class="process-card fade-up delay-2">
+    <div class="label">HVORDAN VI ARBEJDER</div>
+    <h3>Fra idé til performance</h3>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Strategi & koncept</h4>
+          <p>Vi finder vinkler, formater og budskaber, der passer til jeres brand og målgruppe.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Optagelse & creators</h4>
+          <p>Vi organiserer optagelser, finder profiler og får indhold produceret professionelt.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Redigering & levering</h4>
+          <p>Videoerne bliver redigeret skarpt og gjort klar til at performe stærkt.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Klare mål</h4>
+          <p>Vi arbejder med tydelige forventninger, og i udvalgte setups kan der indgå garanti på aftalte visninger.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SERVICES -->
+<section class="services" id="ydelser">
+  <div class="services-intro">
+    <div class="section-label">YDELSER</div>
+    <h2 class="section-title">Vi gør TikTok enkelt for virksomheder, der vil vokse hurtigt.</h2>
+    <p class="section-sub">Vi bygger en løsning omkring jeres virksomhed, så I ikke selv skal stå for idéudvikling, filming, redigering eller koordinering med creators.</p>
+  </div>
+ 
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
+      </div>
+      <h3>TikTok-strategi</h3>
+      <p>Vi planlægger indhold, vinkler og kampagnestruktur, så jeres brand står stærkt fra start.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      </div>
+      <h3>Video produktion</h3>
+      <p>Vi producerer TikTok-videoer tilpasset jeres brand, produkt og målgruppe.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </div>
+      <h3>Professionel redigering</h3>
+      <p>Vi sørger for skarp klipning, pacing og hooks, så videoerne fremstår professionelle.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>Influencer & creator setup</h3>
+      <p>Vi finder de rigtige ansigter og står for planlægning, filming og levering.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- WHY -->
+<section id="hvorfor">
+  <div class="why">
+    <div class="why-left">
+      <div class="section-label">HVORFOR VÆLGE OS</div>
+      <h2 class="section-title">Et setup, hvor execution faktisk bliver gjort.</h2>
+      <p class="section-sub">Mange virksomheder vil gerne i gang med TikTok, men ender med at mangle idéer, tid, redigering og de rigtige mennesker foran kameraet. Vi samler hele processen og gør den overskuelig.</p>
+      <div class="why-points" style="margin-top:32px">
+        <div class="why-point">Én partner til strategi, optagelse, redigering og creators</div>
+        <div class="why-point">Skarpt visuelt indhold med fokus på performance</div>
+        <div class="why-point">Professionel proces fra første idé til færdig levering</div>
+        <div class="why-point">Mulighed for klare performance-mål i udvalgte samarbejder</div>
+      </div>
+    </div>
+    <div class="why-right">
+      <div class="features-top">
+        <div class="feat-card">
+          <div class="feat-num">01</div>
+          <h4>TikTok</h4>
+          <p>Strategi, produktion og distribution samlet ét sted.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">02</div>
+          <h4>Creators</h4>
+          <p>Vi matcher brands med de rigtige influencers og profiler.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">03</div>
+          <h4>Execution</h4>
+          <p>Vi samler idé, optagelse, redigering og levering i ét setup.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PERFORMANCE BANNER -->
+<div class="perf-banner">
+  <div class="perf-banner-left">
+    <div class="section-label">PERFORMANCE</div>
+    <h2>Vi arbejder med tydelige forventninger.</h2>
+    <p>Hos GrowthPulse handler det først og fremmest om stærkt indhold og skarp eksekvering. I nogle samarbejder kan der samtidig indgå en aftale om visningsmål og refundering, hvis de aftalte mål ikke bliver nået.</p>
+  </div>
+  <a href="#kontakt" class="btn-primary" style="white-space:nowrap;flex-shrink:0">Tag en snak med os</a>
+</div>
+ 
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="section-label">KONTAKT</div>
+      <h2>Lad os vise, hvordan GrowthPulse kan løfte jeres TikTok.</h2>
+      <p>Uanset om I vil have produceret indhold, sat creators på jeres brand eller bygge en stærkere TikTok-tilstedeværelse, kan vi sammensætte et setup, der passer til jer.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="ci-label">Email</div>
+          <div class="ci-val">august@growthpulse.dk</div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-label">Telefon · Sebastian</div>
+          <div class="ci-val">23 83 80 77</div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-label">Telefon · August</div>
+          <div class="ci-val">60 52 31 88</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <h3>Klar til at tage næste skridt?</h3>
+      <p>Skriv direkte til os eller ring, så tager vi en hurtig snak om jeres virksomhed, jeres mål og hvordan et setup med GrowthPulse kan se ud.</p>
+      <div class="contact-btns">
+        <a href="mailto:august@growthpulse.dk" class="btn-primary">Send email</a>
+        <a href="tel:60523188" class="btn-ghost">Ring til August</a>
+        <a href="tel:23838077" class="btn-ghost">Ring til Sebastian</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">GROWTH<br>PULSE <span>Brand Scaling</span></a>
+  <p>© 2026 GrowthPulse · TikTok marketing for ambitiøse brands</p>
+</footer>
+ 
+</body>
+</html>
